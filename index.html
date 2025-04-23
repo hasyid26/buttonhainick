@@ -14,17 +14,7 @@
                         <div class="cardImage"><i class="bi bi-megaphone fs-1"></i></div>
                         <h4 class="card-title fw-bold text-black mt-2">Buzzer</h4>
                         <div class="mt-2">
-                            <button class="btn btn-primary w-100 rounded-sm fw-semibold"
-                            onclick="openWhatsApp(`Halo, saya ingin memesan Paket Buzzer. Dengan detail :
-                        - 200 Buzzer organik
-                        - Likes, Follow, Repost, Komen
-                        - No Hate comment
-                        - No black campaign
-                        Harga: IDR 5.000.000
-                        Apakah paket ini masih tersedia?`)">
-                            Dapatkan Paket Buzzer
-                        </button>
-                        
+                            <a id="buzzerLink" class="btn btn-primary w-100 rounded-sm fw-semibold">Dapatkan Paket Buzzer</a>
                         </div>
                     </div>
                     <hr class="bg-secondary">
@@ -50,14 +40,7 @@
                         <div class="cardImage"><i class="bi bi-camera-video fs-1"></i></div>
                         <h4 class="card-title fw-bold text-black mt-2">Review Product</h4>
                         <div class="mt-2">
-                            <button class="btn btn-primary w-100 rounded-sm fw-semibold"
-                            onclick="openWhatsApp(`Halo, saya ingin memesan Paket Review Product. Dengan detail :
-                        - Nano KOL: 10 KOL, 1000+ followers, 1x video, 1x revisi (IDR 3.500.000)
-                        - Mikro KOL: 10 KOL, 10K+ followers, 1x video, 1x revisi (IDR 5.000.000)
-                        *Min pengambilan 10 KOL per package.
-                        Apakah paket ini masih tersedia?`)">
-                            Dapatkan Paket Review
-                        </button>
+                            <a id="reviewLink" class="btn btn-primary w-100 rounded-sm fw-semibold">Dapatkan Paket Review</a>
                         
                         </div>
                     </div>
@@ -89,15 +72,7 @@
                         <div class="cardImage"><i class="bi bi-shop fs-1"></i></div>
                         <h4 class="card-title fw-bold text-black mt-2">Visit Event/Store</h4>
                         <div class="mt-2">
-                            <button class="btn btn-primary w-100 rounded-sm fw-semibold"
-    onclick="openWhatsApp(`Halo, saya ingin memesan Paket Visit Event/Store. Dengan detail :
-- Nano KOL: 10 KOL, 1000+ followers, 1x video, 1x revisi (IDR 5.000.000)
-- Mikro KOL: 10 KOL, 10K+ followers, 1x video, 1x revisi (IDR 6.500.000)
-*Min pengambilan 10 KOL per package.
-Apakah paket ini masih tersedia?`)">
-    Dapatkan Paket Kunjungan
-</button>
-                       
+                            <a id="visitLink" class="btn btn-primary w-100 rounded-sm fw-semibold">Dapatkan Paket Kunjungan</a>
                         </div>
                     </div>
                     <hr class="bg-secondary">
@@ -121,16 +96,46 @@ Apakah paket ini masih tersedia?`)">
         </div>
 
         <script>
-            function openWhatsApp(message) {
-                const encodedMessage = encodeURIComponent(message);
-                const phone = "6282136358570";
-                const isMobile = /iPhone|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                const url = isMobile 
-                    ? `https://wa.me/${phone}?text=${encodedMessage}` 
-                    : `https://web.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
-                window.open(url, "_blank");
-            }
-        </script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+              const phone = "6282136358570";
+          
+              const packages = {
+                buzzerLink: `Halo, saya ingin memesan Paket Buzzer. Dengan detail :
+          - 200 Buzzer organik
+          - Likes, Follow, Repost, Komen
+          - No Hate comment
+          - No black campaign
+          Harga: IDR 5.000.000
+          Apakah paket ini masih tersedia?`,
+          
+                reviewLink: `Halo, saya ingin memesan Paket Review Product. Dengan detail :
+          - Nano KOL: 10 KOL, 1000+ followers, 1x video, 1x revisi (IDR 3.500.000)
+          - Mikro KOL: 10 KOL, 10K+ followers, 1x video, 1x revisi (IDR 5.000.000)
+          *Min pengambilan 10 KOL per package.
+          Apakah paket ini masih tersedia?`,
+          
+                visitLink: `Halo, saya ingin memesan Paket Visit Event/Store. Dengan detail :
+          - Nano KOL: 10 KOL, 1000+ followers, 1x video, 1x revisi (IDR 5.000.000)
+          - Mikro KOL: 10 KOL, 10K+ followers, 1x video, 1x revisi (IDR 6.500.000)
+          *Min pengambilan 10 KOL per package.
+          Apakah paket ini masih tersedia?`
+              };
+          
+              Object.entries(packages).forEach(([id, msg]) => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                  const text = encodeURIComponent(msg);
+                  const whatsappUrl = isMobile
+                    ? `https://wa.me/${phone}?text=${text}`
+                    : `https://web.whatsapp.com/send?phone=${phone}&text=${text}`;
+                  btn.setAttribute("href", whatsappUrl);
+                }
+              });
+            });
+          </script>
+          
+          
         
         
           </div>
