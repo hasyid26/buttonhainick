@@ -15,7 +15,7 @@
                         <h4 class="card-title fw-bold text-black mt-2">Buzzer</h4>
                         <div class="mt-2">
                             <button class="btn btn-primary w-100 rounded-sm fw-semibold"
-                                onclick="openWhatsApp('Halo, saya ingin memesan Paket Buzzer. Dengan detail:%0A- 200 Buzzer organik%0A- Likes, Follow, Repost, Komen%0A- No Hate comment%0A- No black campaign%0AHarga: IDR 5.000.000%0AApakah paket ini masih tersedia?')">
+                                onclick="openWhatsApp('Halo, saya ingin memesan Paket Buzzer. Dengan detail:\n- 200 Buzzer organik\n- Likes, Follow, Repost, Komen\n- No Hate comment\n- No black campaign\nHarga: IDR 5.000.000\nApakah paket ini masih tersedia?')">
                                 Dapatkan Paket Buzzer
                             </button>
                         </div>
@@ -44,7 +44,7 @@
                         <h4 class="card-title fw-bold text-black mt-2">Review Product</h4>
                         <div class="mt-2">
                             <button class="btn btn-primary w-100 rounded-sm fw-semibold"
-                            onclick="openWhatsApp('Halo, saya ingin memesan Paket Review Product. Dengan detail:%0A- Nano KOL: 10 KOL, 1000+ followers, 1x video, 1x revisi (IDR 3.500.000)%0A- Mikro KOL: 10 KOL, 10K+ followers, 1x video, 1x revisi (IDR 5.000.000)%0A*Min pengambilan 10 KOL per package.%0AApakah paket ini masih tersedia?')">
+                            onclick="openWhatsApp('Halo, saya ingin memesan Paket Review Product. Dengan detail:\n- Nano KOL: 10 KOL, 1000+ followers, 1x video, 1x revisi (IDR 3.500.000)\n- Mikro KOL: 10 KOL, 10K+ followers, 1x video, 1x revisi (IDR 5.000.000)\n*Min pengambilan 10 KOL per package.\nApakah paket ini masih tersedia?')">
                             Dapatkan Paket Review
                         </button>
                         </div>
@@ -78,7 +78,7 @@
                         <h4 class="card-title fw-bold text-black mt-2">Visit Event/Store</h4>
                         <div class="mt-2">
                             <button class="btn btn-primary w-100 rounded-sm fw-semibold"
-                            onclick="openWhatsApp('Halo, saya ingin memesan Paket Visit Event/Store. Dengan detail:%0A- Nano KOL: 10 KOL, 1000+ followers, 1x video, 1x revisi (IDR 5.000.000)%0A- Mikro KOL: 10 KOL, 10K+ followers, 1x video, 1x revisi (IDR 6.500.000)%0A*Min pengambilan 10 KOL per package.%0AApakah paket ini masih tersedia?')">
+                            onclick="openWhatsApp('Halo, saya ingin memesan Paket Visit Event/Store. Dengan detail:\n- Nano KOL: 10 KOL, 1000+ followers, 1x video, 1x revisi (IDR 5.000.000)\n- Mikro KOL: 10 KOL, 10K+ followers, 1x video, 1x revisi (IDR 6.500.000)\n*Min pengambilan 10 KOL per package.\nApakah paket ini masih tersedia?')">
                             Dapatkan Paket Kunjungan
                         </button>
 
@@ -106,13 +106,15 @@
         </div>
 
         <script>
-            function openWhatsApp(message) {
-            const phone = "6282136358570"; // Nomor WhatsApp
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); // Deteksi mobile
-            const url = isMobile 
-                ? `https://wa.me/${phone}?text=${message}` // Untuk mobile
-                : `https://web.whatsapp.com/send?phone=${phone}&text=${message}`; // Untuk desktop
-            window.open(url, "_blank"); // Buka WhatsApp di tab baru
+            function openWhatsApp(button) {
+            const phone = "6282136358570";
+            const message = button.getAttribute("data-message");
+            const encodedMessage = encodeURIComponent(message);
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const url = isMobile
+                ? `https://wa.me/${phone}?text=${encodedMessage}`
+                : `https://web.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
+            window.open(url, "_blank");
         }
         </script>        
         
