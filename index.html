@@ -107,14 +107,13 @@
 
         <script>
             function openWhatsApp(message) {
-                const phone = "6282136358570";
-                const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-                const encodedMessage = encodeURIComponent(message);
-                const url = isMobile 
-                    ? `https://wa.me/${phone}?text=${encodedMessage}` 
-                    : `https://web.whatsapp.com/send?phone=${phone}&text=${encodedMessage}`;
-                window.open(url, "_blank");
-            }
+            const phone = "6282136358570"; // Nomor WhatsApp
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent); // Deteksi mobile
+            const url = isMobile 
+                ? `https://wa.me/${phone}?text=${message}` // Untuk mobile
+                : `https://web.whatsapp.com/send?phone=${phone}&text=${message}`; // Untuk desktop
+            window.open(url, "_blank"); // Buka WhatsApp di tab baru
+        }
         </script>        
         
         
